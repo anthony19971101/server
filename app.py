@@ -26,8 +26,9 @@ class myHandler(BaseHTTPRequestHandler):
 		path=self.path
 		print(self.path)
 		print('hola como estas')
+		datos=''
 		if self.path=="/":  #127.0.0.1:5000/
-			self.path="/index.html" #127.0.0.1:5000/index.html
+			self.path="index.html" #127.0.0.1:5000/index.html
 		try:
 			#Check the file extension required and
 			#set the right mime type
@@ -35,6 +36,9 @@ class myHandler(BaseHTTPRequestHandler):
 			sendReply = False
 			if self.path.endswith(".html"):
 				mimetype='text/html'
+				f=open(self.path)
+				datos=f.read()
+				f.close()
 				sendReply = True
 			if self.path.endswith(".jpg"):
 				mimetype='image/jpg'
@@ -57,9 +61,9 @@ class myHandler(BaseHTTPRequestHandler):
 				self.end_headers()
 				
 				try:
-					self.wfile.write('hola mundo eres un crack')
+					self.wfile.write(datos)
 				except:
-					self.wfile.write(bytes('today is a wonderful day for you', 'UTF-8'))
+					self.wfile.write(bytes(datos, 'UTF-8'))
 				
 			return
 
