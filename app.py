@@ -59,7 +59,7 @@ class myHandler(BaseHTTPRequestHandler):
 				try:
 					self.wfile.write('hola mundo eres un crack')
 				except:
-					self.wfile.write(bytes('today is a wonderful day', 'UTF-8'))
+					self.wfile.write(bytes('today is a wonderful day for you', 'UTF-8'))
 				
 			return
 
